@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AppIcon Forge
 
-## Getting Started
+An intuitive app icon generator that lets you customize colors, borders, gradient, shadows, text, local images and more to create unique app icons effortlessly.
 
-First, run the development server:
+![page](./scrennshots/page.jpg)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Example
+
+![example1](./scrennshots/1-1.png)
+![example2](./scrennshots/1-2.png)
+![example3](./scrennshots/1-3.png)
+![example4](./scrennshots/1-4.png)
+
+## Features
+
+- Customize icon size, position, color, background color, border, gradient, and shadow
+- Customize text content and text gradient
+- Customize local SVG files or images
+- Generate icons using [Iconify Icons](https://iconify.design/) with over 200,000 available icons.
+- Real-time preview of your icon changes.
+- Easy export of icons for apps.
+
+## Usage
+
+You can use AppIcon Forge directly from GitHub Pages without any installation. Simply visit the following URL:
+
+[AppIcon Forge on GitHub Pages](https://zhangyu1818.github.io/appicon-forge/)
+
+If you want to run it locally:
+
+Clone the repository and install dependencies:
+
+```sh
+# Clone the repository
+git clone https://github.com/zhangyu1818/appicon-forge.git
+
+# Navigate to the directory
+cd appicon-forge
+
+# Install dependencies
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Visit `http://localhost:5173/appicon-forge/` in your browser to start using AppIcon Forge.
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+To build the project for production:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sh
+pnpm build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deploy the contents of the `out` folder to your web server or GitHub Pages.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
