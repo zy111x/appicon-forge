@@ -49,7 +49,7 @@ export const ColorList = (props: ColorListProps) => {
               </div>
             )}
             value={color}
-            onChange={(value) => onColorChange(`${value}`, index)}
+            onChange={(value) => onColorChange(value, index)}
           />
         )
       })}

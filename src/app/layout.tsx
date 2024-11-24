@@ -7,7 +7,6 @@ import { ClientProvider } from '@/providers/client'
 import { StoreProvider } from '@/store'
 
 import './globals.css'
-import './color-picker.css'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',

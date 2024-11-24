@@ -68,3 +68,89 @@ body {
     @apply bg-background text-foreground transition-colors;
   }
 }
+
+/* @uiw/react-color-colorful */
+
+:root {
+  .w-color-sketch {
+    --sketch-background: hsl(var(--background)) !important;
+  }
+
+  .w-color-swatch {
+    --sketch-swatch-border-top: 1px solid hsl(var(--border)) !important;
+  }
+
+  .w-color-block {
+    --block-background-color: hsl(var(--background)) !important;
+    --block-box-shadow: hsl(var(--border) / 10%) 0 1px !important;
+  }
+
+  .w-color-editable-input {
+    --editable-input-label-color: hsl(var(--muted-foreground)) !important;
+    --editable-input-box-shadow: hsl(var(--border)) 0px 0px 0px 1px inset !important;
+    --editable-input-color: hsl(var(--foreground)) !important;
+  }
+
+  .w-color-github {
+    --github-border: 1px solid hsl(var(--border)) !important;
+    --github-background-color: hsl(var(--background)) !important;
+    --github-box-shadow: hsl(var(--border) / 15%) 0px 3px 12px !important;
+    --github-arrow-border-color: hsl(var(--border)) !important;
+  }
+
+  .w-color-compact {
+    --compact-background-color: hsl(var(--background)) !important;
+  }
+
+  .w-color-material {
+    --material-background-color: hsl(var(--background)) !important;
+    --material-border-bottom-color: hsl(var(--border)) !important;
+  }
+
+  .w-color-alpha {
+    --alpha-pointer-background-color: hsl(var(--muted)) !important;
+    --alpha-pointer-box-shadow: hsl(var(--border) / 37%) 0px 1px 4px 0px !important;
+  }
+
+  &.dark {
+    .w-color-sketch {
+      --sketch-background: hsl(var(--background)) !important;
+    }
+
+    .w-color-swatch {
+      --sketch-swatch-border-top: 1px solid hsl(var(--border)) !important;
+    }
+
+    .w-color-block {
+      --block-background-color: hsl(var(--background)) !important;
+      --block-box-shadow: hsl(var(--border) / 10%) 0 1px !important;
+    }
+
+    .w-color-editable-input {
+      --editable-input-label-color: hsl(var(--muted-foreground)) !important;
+      --editable-input-box-shadow: hsl(var(--border)) 0px 0px 0px 1px inset !important;
+      --editable-input-color: hsl(var(--foreground)) !important;
+    }
+
+    .w-color-github {
+      --github-border: 1px solid hsl(var(--border)) !important;
+      --github-background-color: hsl(var(--background)) !important;
+      --github-box-shadow: hsl(var(--border) / 15%) 0px 3px 12px !important;
+      --github-arrow-border-color: hsl(var(--border)) !important;
+    }
+
+    .w-color-compact {
+      --compact-background-color: hsl(var(--background)) !important;
+    }
+
+    .w-color-material {
+      --material-background-color: hsl(var(--background)) !important;
+      --material-border-bottom-color: hsl(var(--border)) !important;
+    }
+
+    .w-color-alpha {
+      --alpha-pointer-background-color: hsl(var(--muted)) !important;
+      --alpha-pointer-box-shadow: hsl(var(--border) / 37%) 0px 1px 4px 0px !important;
+    }
+  }
+}

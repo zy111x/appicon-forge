@@ -1,7 +1,4 @@
-import ColorPickerPanel, {
-  ColorBlock,
-  type ColorPickerProps as ColorPickerPanelProps,
-} from '@rc-component/color-picker'
+import { Sketch } from '@uiw/react-color'
 
 import {
   Popover,
@@ -9,16 +6,21 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 
-export interface ColorPickerProps extends ColorPickerPanelProps {
+export interface ColorPickerProps {
   colorBlockRender?: (node: React.ReactNode) => React.ReactNode
+  onChange?: (value: string) => void
+  value?: string
 }
 
 export const ColorPicker = (props: ColorPickerProps) => {
-  const { colorBlockRender: renderColorBlock, value, ...rest } = props
+  const { colorBlockRender: renderColorBlock, onChange, value } = props
 
   const colorBlock = value && (
     <PopoverTrigger className='w-min'>
-      <ColorBlock color={value as string} prefixCls='appicon-color-picker' />
+      <div
+        className='size-7 rounded-md border border-zinc-500'
+        style={{ backgroundColor: value }}
+      />
     </PopoverTrigger>
   )
 
@@ -27,11 +29,13 @@ export const ColorPicker = (props: ColorPickerProps) => {
   return (
     <Popover>
       {renderNode}
-      <PopoverContent>
-        <ColorPickerPanel
-          {...rest}
-          prefixCls='appicon-color-picker'
-          value={value}
+      <PopoverContent className='w-auto p-0 shadow-none'>
+        <Sketch
+          color={value}
+          presetColors={false}
+          onChange={(v) => {
+            onChange?.(v.hexa)
+          }}
         />
       </PopoverContent>
     </Popover>

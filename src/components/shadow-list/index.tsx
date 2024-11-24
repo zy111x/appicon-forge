@@ -114,7 +114,7 @@ function ShadowItem(props: ShadowItemProps) {
             onChange?.(
               changeValueFromArray(
                 value,
-                `${newValue}` as Shadow[number],
+                newValue as Shadow[number],
                 4,
               ) as Shadow,
             )
