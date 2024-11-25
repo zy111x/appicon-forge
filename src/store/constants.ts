@@ -17,3 +17,10 @@ export const enum Settings {
   Text = 'text',
   TextShadow = 'text-shadow',
 }
+
+// eslint-disable-next-line no-restricted-syntax
+export const enum Gradient {
+  Linear = 'linear',
+  Radial = 'radial',
+  Conic = 'conic',
+}

@@ -11,14 +11,21 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { SettingsContainer, StyleFieldSubgrid } from '@/components/ui/styled'
+import { useStore } from '@/store'
+import { Gradient } from '@/store/constants'
 
 import { FontSelect } from '../../font-select'
 import { ColorsField } from '../common/colors-field'
+import { GradientSelectField } from '../common/gradient-select-field'
 import { PointField } from '../common/point-field'
 import { SliderField } from '../common/slider-field'
 
 export const TextSettings = () => {
   const { t } = useTranslation()
+  const [{ textColors, textGradient }] = useStore((store) => store.styles)
+
+  const isGradient = textColors.length !== 1
+
   return (
     <SettingsContainer>
       <StyleFieldSubgrid
@@ -36,11 +43,18 @@ export const TextSettings = () => {
       />
       <PointField label={t('settings.text.offset')} path='textOffset' />
       <ColorsField label={t('settings.text.colors.text')} path='textColors' />
-      <SliderField
-        label={t('settings.text.colors.rotation')}
-        max={360}
-        path='textColorRotation'
-      />
+      {isGradient && (
+        <>
+          {textGradient !== Gradient.Radial && (
+            <SliderField
+              label={t('settings.text.colors.rotation')}
+              max={360}
+              path='textColorRotation'
+            />
+          )}
+          <GradientSelectField path='textGradient' />
+        </>
+      )}
       <StyleFieldSubgrid label={t('settings.text.font.text')} path='textFont'>
         <FontSelect />
       </StyleFieldSubgrid>

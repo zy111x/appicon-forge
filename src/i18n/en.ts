@@ -27,7 +27,12 @@ export const en = {
     settings: {
       background: {
         colors: 'Colors',
+        rotation: 'Angle',
+      },
+      border: {
+        colors: 'Colors',
         rotation: 'Rotation',
+        width: 'Width',
         radius: {
           bottom: 'Radius Bottom',
           default: 'Radius',
@@ -36,14 +41,15 @@ export const en = {
           top: 'Radius Top',
         },
       },
-      border: {
-        colors: 'Colors',
-        rotation: 'Rotation',
-        width: 'Width',
-      },
       download: {
         padding: 'Include Padding',
         size: 'Image Size',
+      },
+      gradient: {
+        conic: 'Conic',
+        linear: 'Linear',
+        radial: 'Radial',
+        text: 'Gradient',
       },
       icon: {
         color: 'Color',
@@ -65,7 +71,7 @@ export const en = {
         size: 'Size',
         weight: 'Weight',
         colors: {
-          rotation: 'Colors Rotation',
+          rotation: 'Colors Angle',
           text: 'Colors',
         },
         font: {

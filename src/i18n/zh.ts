@@ -27,7 +27,12 @@ export const zh = {
     settings: {
       background: {
         colors: '颜色组',
+        rotation: '角度',
+      },
+      border: {
+        colors: '颜色组',
         rotation: '旋转',
+        width: '宽度',
         radius: {
           bottom: '下边角半径',
           default: '半径',
@@ -36,14 +41,15 @@ export const zh = {
           top: '上边角半径',
         },
       },
-      border: {
-        colors: '颜色组',
-        rotation: '旋转',
-        width: '宽度',
-      },
       download: {
         padding: '包含内边距',
         size: '图片大小',
+      },
+      gradient: {
+        conic: '圆锥',
+        linear: '线性',
+        radial: '径向',
+        text: '渐变',
       },
       icon: {
         color: '颜色',
@@ -65,7 +71,7 @@ export const zh = {
         size: '大小',
         weight: '粗细',
         colors: {
-          rotation: '颜色旋转',
+          rotation: '颜色角度',
           text: '颜色组',
         },
         font: {

@@ -1,6 +1,6 @@
 import type { APIv2Collection } from '@/services/iconify'
 
-import type { Settings, Tab } from './constants'
+import type { Gradient, Settings, Tab } from './constants'
 
 export type Point = [number, number]
 export type Shadow = [
@@ -15,9 +15,11 @@ export type BorderRadius = [number, number, number, number]
 export interface Styles {
   // Background
   backgroundColors: string[]
+  backgroundGradient: Gradient
   backgroundRotation: number
   // Border
   borderColors: string[]
+  borderGradient: Gradient
   borderRadius: BorderRadius
   borderRotation: number
   borderWidth: number
@@ -37,6 +39,7 @@ export interface Styles {
   textColorRotation: number
   textColors: string[]
   textFont: string
+  textGradient: Gradient
   textItalic: boolean
   textOffset: Point
   textRotation: number

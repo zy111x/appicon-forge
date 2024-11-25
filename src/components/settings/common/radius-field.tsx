@@ -35,7 +35,7 @@ export const RadiusField = (props: RadiusFieldProps) => {
   }
 
   const extraProps = {
-    label: t('settings.background.radius.default'),
+    label: t('settings.border.radius.default'),
     normalizeValue: normalizeValueToSetAll,
     normalizeValueFromEvent: normalizeValueFromEventToSetAll,
     path: 'borderRadius',
@@ -57,7 +57,7 @@ export const RadiusField = (props: RadiusFieldProps) => {
         sliderClassName='col-span-2'
         {...(isSeparateBorderRadius
           ? {
-              label: t('settings.background.radius.top'),
+              label: t('settings.border.radius.top'),
               path: 'borderRadius[0]',
             }
           : extraProps)}
@@ -82,7 +82,7 @@ export const RadiusField = (props: RadiusFieldProps) => {
             <SliderField
               key={index}
               className='col-span-3'
-              label={t(`settings.background.radius.${label}`)}
+              label={t(`settings.border.radius.${label}`)}
               max={128}
               path={`borderRadius[${index}]`}
               sliderClassName='col-span-2'

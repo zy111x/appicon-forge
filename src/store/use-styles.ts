@@ -1,5 +1,6 @@
 import { useImmer } from 'use-immer'
 
+import { Gradient } from './constants'
 import {
   defaultBackgroundColor,
   defaultBorderColor,
@@ -15,8 +16,10 @@ import type { Styles } from './interface'
 export const useStyles = () => {
   const [styles, setStyles] = useImmer<Styles>({
     backgroundColors: [defaultBackgroundColor],
+    backgroundGradient: Gradient.Linear,
     backgroundRotation: 180,
     borderColors: [defaultBorderColor],
+    borderGradient: Gradient.Linear,
     borderRadius: [64, 64, 64, 64],
     borderRotation: 180,
     borderWidth: 0,
@@ -31,6 +34,7 @@ export const useStyles = () => {
     textColorRotation: 0,
     textColors: [defaultTextColor],
     textFont: defaultTextFont,
+    textGradient: Gradient.Linear,
     textItalic: false,
     textOffset: [0, 0],
     textRotation: 0,

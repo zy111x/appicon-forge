@@ -2,6 +2,8 @@ import { clsx, type ClassValue } from 'clsx'
 import { toPng } from 'html-to-image'
 import { twMerge } from 'tailwind-merge'
 
+import { Gradient } from '@/store/constants'
+
 import type { APIv2CollectionResponse } from '@/services/iconify'
 import type { Shadow } from '@/store/interface'
 
@@ -78,10 +80,24 @@ export const getVisibleIconsAsync = async (
   return Array.from(iconSet)
 }
 
-export const colorOrLinearGradient = (value: string[], direction: number) => {
-  return value.length === 1
-    ? value[0]
-    : `linear-gradient(${direction}deg, ${value.join(', ')})`
+export const colorToGradient = (
+  value: string[],
+  direction: number,
+  type: Gradient,
+) => {
+  const normalizedValue = value.length === 1 ? [value[0], value[0]] : value
+  const valueString = normalizedValue.join(', ')
+  if (type === Gradient.Linear) {
+    return `linear-gradient(${direction}deg, ${valueString})`
+  }
+  if (type === Gradient.Radial) {
+    return `radial-gradient(${valueString})`
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (type === Gradient.Conic) {
+    return `conic-gradient(from ${direction}deg, ${valueString})`
+  }
+  return ''
 }
 
 export const getShadowCSS = (insetShadow: Shadow[], inset?: boolean) => {

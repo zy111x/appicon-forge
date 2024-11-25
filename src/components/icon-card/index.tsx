@@ -8,7 +8,7 @@ import {
 } from '@/constants/icon-size'
 import {
   cn,
-  colorOrLinearGradient,
+  colorToGradient,
   getBorderRadiusCSS,
   getShadowCSS,
   scaleShadow,
@@ -43,8 +43,10 @@ export const IconCard = (props: IconCardProps) => {
 
   const {
     backgroundColors,
+    backgroundGradient,
     backgroundRotation,
     borderColors,
+    borderGradient,
     borderRadius,
     borderRotation,
     borderWidth,
@@ -59,6 +61,7 @@ export const IconCard = (props: IconCardProps) => {
     textColorRotation,
     textColors,
     textFont,
+    textGradient,
     textItalic,
     textOffset,
     textRotation,
@@ -93,19 +96,20 @@ export const IconCard = (props: IconCardProps) => {
 
   let content: React.ReactNode = null
 
-  if (previewType === 'icon' && iconName) {
-    content = (
-      <Icon
-        icon={iconName}
-        style={{
-          color: iconColor,
-          filter: `drop-shadow(${iconShadowValue[0]}px ${iconShadowValue[1]}px ${iconShadowValue[3]}px ${iconShadowValue[4]})`,
-          height: scaleValue(iconSize, valueScale),
-          transform: `rotate(${iconRotation}deg) translate(${scaleValue(iconOffset[0], valueScale)}px, ${scaleValue(iconOffset[1], valueScale)}px)`,
-          width: scaleValue(iconSize, valueScale),
-        }}
-      />
-    )
+  if (previewType === 'icon' || previewType === 'upload') {
+    const styles = {
+      color: iconColor,
+      filter: `drop-shadow(${iconShadowValue[0]}px ${iconShadowValue[1]}px ${iconShadowValue[3]}px ${iconShadowValue[4]})`,
+      height: scaleValue(iconSize, valueScale),
+      transform: `rotate(${iconRotation}deg) translate(${scaleValue(iconOffset[0], valueScale)}px, ${scaleValue(iconOffset[1], valueScale)}px)`,
+      width: scaleValue(iconSize, valueScale),
+    }
+    if (iconName) {
+      content = <Icon icon={iconName} style={styles} />
+    } else {
+      content = <div style={styles}>{uploadNode}</div>
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   } else if (previewType === 'text') {
     content = (
       <span
@@ -120,9 +124,10 @@ export const IconCard = (props: IconCardProps) => {
             ? {
                 backgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                backgroundImage: colorOrLinearGradient(
+                backgroundImage: colorToGradient(
                   textColors,
                   textColorRotation,
+                  textGradient,
                 ),
               }
             : {
@@ -132,20 +137,6 @@ export const IconCard = (props: IconCardProps) => {
       >
         {textValue}
       </span>
-    )
-  } else if (previewType === 'upload') {
-    content = (
-      <div
-        style={{
-          color: iconColor,
-          fontSize: scaleValue(iconSize, valueScale),
-          height: scaleValue(iconSize, valueScale),
-          transform: `rotate(${iconRotation}deg) translate(${scaleValue(iconOffset[0], valueScale)}px, ${scaleValue(iconOffset[1], valueScale)}px)`,
-          width: scaleValue(iconSize, valueScale),
-        }}
-      >
-        {uploadNode}
-      </div>
     )
   }
 
@@ -159,9 +150,13 @@ export const IconCard = (props: IconCardProps) => {
         className={cn('size-full select-none', className)}
         role='button'
         style={{
-          background: colorOrLinearGradient(borderColors, borderRotation),
           boxShadow: shadowCSS,
           padding: scaleValue(borderWidth, valueScale),
+          backgroundImage: colorToGradient(
+            borderColors,
+            borderRotation,
+            borderGradient,
+          ),
           borderRadius: getBorderRadiusCSS(
             borderRadius.map((v) => scaleValue(v, valueScale)) as BorderRadius,
           ),
@@ -178,9 +173,10 @@ export const IconCard = (props: IconCardProps) => {
           className='flex size-full items-center justify-center'
           style={{
             boxShadow: insetShadowCSS,
-            background: colorOrLinearGradient(
+            backgroundImage: colorToGradient(
               backgroundColors,
               backgroundRotation,
+              backgroundGradient,
             ),
             borderRadius: getBorderRadiusCSS(
               borderRadius.map((v) =>
