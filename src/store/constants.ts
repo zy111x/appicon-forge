@@ -12,6 +12,8 @@ export const enum Settings {
   Download = 'download',
   Icon = 'icon',
   InsetShadow = 'inset-shadow',
+  IconShadow = 'icon-shadow',
   Shadow = 'shadow',
   Text = 'text',
+  TextShadow = 'text-shadow',
 }

@@ -25,6 +25,7 @@ export interface Styles {
   iconColor: string
   iconOffset: Point
   iconRotation: number
+  iconShadow: Shadow[]
   iconSize: number
   // Inset Shadow
   insetShadows: Shadow[]
@@ -39,6 +40,7 @@ export interface Styles {
   textItalic: boolean
   textOffset: Point
   textRotation: number
+  textShadow: Shadow[]
   textSize: number
   textValue: string
   textWeight: string

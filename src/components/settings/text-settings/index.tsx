@@ -12,8 +12,8 @@ import {
 } from '@/components/ui/select'
 import { SettingsContainer, StyleFieldSubgrid } from '@/components/ui/styled'
 
+import { FontSelect } from '../../font-select'
 import { ColorsField } from '../common/colors-field'
-import { FontSelect } from '../common/font-select'
 import { PointField } from '../common/point-field'
 import { SliderField } from '../common/slider-field'
 

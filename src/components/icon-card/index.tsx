@@ -51,6 +51,7 @@ export const IconCard = (props: IconCardProps) => {
     iconColor,
     iconOffset,
     iconRotation,
+    iconShadow: [iconShadow],
     iconSize,
     insetShadows,
     padding,
@@ -61,6 +62,7 @@ export const IconCard = (props: IconCardProps) => {
     textItalic,
     textOffset,
     textRotation,
+    textShadow: [textShadow],
     textSize,
     textValue,
     textWeight,
@@ -79,6 +81,8 @@ export const IconCard = (props: IconCardProps) => {
     insetShadows.map((v) => scaleShadow(v, valueScale)),
     true,
   )
+  const iconShadowValue = scaleShadow(iconShadow, valueScale)
+  const textShadowValue = scaleShadow(textShadow, valueScale)
 
   const setPreviewIconName = () => {
     if (inPreview || !iconName) return
@@ -95,6 +99,7 @@ export const IconCard = (props: IconCardProps) => {
         icon={iconName}
         style={{
           color: iconColor,
+          filter: `drop-shadow(${iconShadowValue[0]}px ${iconShadowValue[1]}px ${iconShadowValue[3]}px ${iconShadowValue[4]})`,
           height: scaleValue(iconSize, valueScale),
           transform: `rotate(${iconRotation}deg) translate(${scaleValue(iconOffset[0], valueScale)}px, ${scaleValue(iconOffset[1], valueScale)}px)`,
           width: scaleValue(iconSize, valueScale),
@@ -109,6 +114,7 @@ export const IconCard = (props: IconCardProps) => {
           fontSize: scaleValue(textSize, valueScale),
           fontStyle: textItalic ? 'italic' : 'normal',
           fontWeight: textWeight,
+          textShadow: `${textShadowValue[0]}px ${textShadowValue[1]}px ${textShadowValue[3]}px ${textShadowValue[4]}`,
           transform: `rotate(${textRotation}deg) translate(${scaleValue(textOffset[0], valueScale)}px, ${scaleValue(textOffset[1], valueScale)}px)`,
           ...(textColors.length > 1
             ? {

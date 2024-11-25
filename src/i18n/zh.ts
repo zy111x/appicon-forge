@@ -5,9 +5,11 @@ export const zh = {
     download: '下载',
     'download settings': '下载设置',
     'icon settings': '图标设置',
+    'icon shadow settings': '图标阴影设置',
     'inset shadow settings': '内阴影设置',
     'shadow settings': '阴影设置',
     'text settings': '文字设置',
+    'text shadow settings': '文字阴影设置',
     collections: {
       author: '作者',
       count: '{{count}} 个图标',

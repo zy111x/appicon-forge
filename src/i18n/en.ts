@@ -5,9 +5,11 @@ export const en = {
     download: 'Download',
     'download settings': 'Download Settings',
     'icon settings': 'Icon Settings',
+    'icon shadow settings': 'Icon Shadow Settings',
     'inset shadow settings': 'Inset Shadow Settings',
     'shadow settings': 'Shadow Settings',
     'text settings': 'Text Settings',
+    'text shadow settings': 'Text Shadow Settings',
     collections: {
       author: 'Author',
       count: '{{count}} icons',

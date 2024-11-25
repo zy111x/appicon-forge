@@ -23,6 +23,11 @@ export default function Sidebar() {
     (store) => store.componentsState,
   )
   const { selectedSettings, selectedTab } = componentsState
+
+  const showIconSettings =
+    selectedTab === Tab.Icon || selectedTab === Tab.Upload
+  const showTextSettings = selectedTab === Tab.Text
+
   return (
     <aside className='h-full overflow-y-scroll rounded-2xl border p-4 shadow-sm'>
       <Accordion
@@ -35,7 +40,7 @@ export default function Sidebar() {
           })
         }
       >
-        {(selectedTab === Tab.Icon || selectedTab === Tab.Upload) && (
+        {showIconSettings && (
           <AccordionItem value={Settings.Icon}>
             <AccordionTrigger>{t('icon settings')}</AccordionTrigger>
             <AccordionContent>
@@ -43,11 +48,19 @@ export default function Sidebar() {
             </AccordionContent>
           </AccordionItem>
         )}
-        {selectedTab === Tab.Text && (
+        {showTextSettings && (
           <AccordionItem value={Settings.Text}>
             <AccordionTrigger>{t('text settings')}</AccordionTrigger>
             <AccordionContent>
               <TextSettings />
+            </AccordionContent>
+          </AccordionItem>
+        )}
+        {showTextSettings && (
+          <AccordionItem value={Settings.TextShadow}>
+            <AccordionTrigger>{t('text shadow settings')}</AccordionTrigger>
+            <AccordionContent>
+              <ShadowSettings hideSize path='textShadow' />
             </AccordionContent>
           </AccordionItem>
         )}
@@ -63,6 +76,14 @@ export default function Sidebar() {
             <BorderSettings />
           </AccordionContent>
         </AccordionItem>
+        {showIconSettings && (
+          <AccordionItem value={Settings.IconShadow}>
+            <AccordionTrigger>{t('icon shadow settings')}</AccordionTrigger>
+            <AccordionContent>
+              <ShadowSettings hideSize path='iconShadow' />
+            </AccordionContent>
+          </AccordionItem>
+        )}
         <AccordionItem value={Settings.Shadow}>
           <AccordionTrigger>{t('shadow settings')}</AccordionTrigger>
           <AccordionContent>

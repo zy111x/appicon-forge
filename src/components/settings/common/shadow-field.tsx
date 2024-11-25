@@ -3,12 +3,15 @@ import { StyleFieldSubgrid } from '@/components/ui/styled'
 
 import type { StyleFieldProps } from './style-field'
 
-export type ShadowFieldProps = Omit<StyleFieldProps, 'children'>
+export interface ShadowFieldProps extends Omit<StyleFieldProps, 'children'> {
+  hideSize?: boolean
+}
 
 export const ShadowField = (props: ShadowFieldProps) => {
+  const { hideSize, ...rest } = props
   return (
-    <StyleFieldSubgrid {...props}>
-      <ShadowList />
+    <StyleFieldSubgrid {...rest}>
+      <ShadowList hideSize={hideSize} />
     </StyleFieldSubgrid>
   )
 }

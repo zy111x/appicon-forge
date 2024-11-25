@@ -12,28 +12,32 @@ import { Slider } from '../ui/slider'
 import type { Shadow } from '@/store/interface'
 
 interface ShadowListProps {
+  hideSize?: boolean
   onChange?: (value: Shadow[]) => void
   value?: Shadow[]
 }
 
 export const ShadowList = (props: ShadowListProps) => {
-  const { onChange, value = [] } = props
+  const { hideSize, onChange, value = [] } = props
+
+  const shadowList = hideSize ? value : value.slice(0, 1)
 
   return (
     <div className='grid gap-4'>
-      {value.map((itemValue, index) => (
+      {shadowList.map((itemValue, index) => (
         <div
           // eslint-disable-next-line react/no-array-index-key
           key={index}
           className='relative'
         >
           <ShadowItem
+            hideSize={hideSize}
             value={itemValue}
             onChange={(newValue) =>
               onChange?.(changeValueFromArray(value, newValue, index))
             }
           />
-          {index !== 0 && (
+          {index !== 0 && !hideSize && (
             <Button
               className='absolute -top-2 right-0 size-auto rounded-full p-1'
               size='icon'
@@ -45,28 +49,31 @@ export const ShadowList = (props: ShadowListProps) => {
           )}
         </div>
       ))}
-      <Button
-        className='place-self-center'
-        size='icon'
-        variant='outline'
-        onClick={() =>
-          onChange?.(value.concat([[0, 0, 0, 0, defaultShadowColor]]))
-        }
-      >
-        <PlusIcon />
-      </Button>
+      {!hideSize && (
+        <Button
+          className='place-self-center'
+          size='icon'
+          variant='outline'
+          onClick={() =>
+            onChange?.(value.concat([[0, 0, 0, 0, defaultShadowColor]]))
+          }
+        >
+          <PlusIcon />
+        </Button>
+      )}
     </div>
   )
 }
 
 interface ShadowItemProps {
   className?: string
+  hideSize?: boolean
   onChange?: (value: Shadow) => void
   value: Shadow
 }
 
 function ShadowItem(props: ShadowItemProps) {
-  const { className, onChange, value } = props
+  const { className, hideSize, onChange, value } = props
 
   const { t } = useTranslation()
 
@@ -88,24 +95,30 @@ function ShadowItem(props: ShadowItemProps) {
           [size, 'size'],
           [blur, 'blur'],
         ] as const
-      ).map(([itemValue, key], index) => (
-        <div key={key} className={cls}>
-          <Label>{t(`settings.shadow.${key}`)}</Label>
-          <Slider
-            {...(key === 'x' || key === 'y' ? { max: 100, min: -100 } : {})}
-            value={[itemValue]}
-            onValueChange={([newValue]) =>
-              onChange?.(
-                changeValueFromArray(
-                  value,
-                  newValue as Shadow[number],
-                  index,
-                ) as Shadow,
-              )
-            }
-          />
-        </div>
-      ))}
+      ).map(([itemValue, key], index) => {
+        if (hideSize && key === 'size') {
+          return null
+        }
+
+        return (
+          <div key={key} className={cls}>
+            <Label>{t(`settings.shadow.${key}`)}</Label>
+            <Slider
+              {...(key === 'x' || key === 'y' ? { max: 100, min: -100 } : {})}
+              value={[itemValue]}
+              onValueChange={([newValue]) =>
+                onChange?.(
+                  changeValueFromArray(
+                    value,
+                    newValue as Shadow[number],
+                    index,
+                  ) as Shadow,
+                )
+              }
+            />
+          </div>
+        )
+      })}
       <div className={cls}>
         <Label>{t(`settings.shadow.color`)}</Label>
         <ColorPicker
