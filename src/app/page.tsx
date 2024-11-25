@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react'
 import { useTranslation } from 'react-i18next'
 
 import { IconsGrid } from '@/components/icons-grid'
+import { LanguageToggle } from '@/components/language-toggle'
 import { PreviewDialog } from '@/components/preview-icon-dialog'
 import { PreviewText } from '@/components/preview-text'
 import { PreviewUpload } from '@/components/preview-upload'
@@ -39,7 +40,7 @@ export default function Home() {
           }
         }}
       >
-        <div className='grid grid-cols-[1fr_auto_auto] gap-4'>
+        <div className='grid grid-cols-[1fr_auto_auto_auto] gap-4'>
           <TabsList className='justify-self-start'>
             <TabsTrigger value={Tab.Icon}>{t('tabs.icon')}</TabsTrigger>
             <TabsTrigger value={Tab.Text}>{t('tabs.text')}</TabsTrigger>
@@ -54,6 +55,7 @@ export default function Home() {
               <Icon icon='octicon:mark-github-24' />
             </a>
           </Button>
+          <LanguageToggle />
           <ThemeToggle />
         </div>
         <TabsContent className='flex-1 overflow-hidden' value={Tab.Icon}>
