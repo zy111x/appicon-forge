@@ -2,16 +2,12 @@
 
 An intuitive app icon generator that lets you customize colors, borders, gradient, shadows, text, local images and more to create unique app icons effortlessly.
 
-![page](./scrennshots/page.jpg)
-
----
-
 ## Example
 
-![example1](./scrennshots/1-1.png)
-![example2](./scrennshots/1-2.png)
-![example3](./scrennshots/1-3.png)
-![example4](./scrennshots/1-4.png)
+![example1](./screenshots/1-1.png)
+![example2](./screenshots/1-2.png)
+![example3](./screenshots/1-3.png)
+![example4](./screenshots/1-4.png)
 
 ## Features
 
