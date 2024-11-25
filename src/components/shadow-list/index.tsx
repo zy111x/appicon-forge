@@ -20,11 +20,9 @@ interface ShadowListProps {
 export const ShadowList = (props: ShadowListProps) => {
   const { hideSize, onChange, value = [] } = props
 
-  const shadowList = hideSize ? value : value.slice(0, 1)
-
   return (
     <div className='grid gap-4'>
-      {shadowList.map((itemValue, index) => (
+      {value.map((itemValue, index) => (
         <div
           // eslint-disable-next-line react/no-array-index-key
           key={index}
