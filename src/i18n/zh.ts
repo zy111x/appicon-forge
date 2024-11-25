@@ -11,7 +11,7 @@ export const zh = {
     collections: {
       author: '作者',
       count: '{{count}} 个图标',
-      license: '许可证',
+      license: '许可',
     },
     search: {
       filter: '筛选图标...',
@@ -19,24 +19,23 @@ export const zh = {
       noResults: '未找到结果',
       query: '从所有集合中搜索图标...',
       back: {
-        collections: '返回集合',
+        collections: '返回到集合',
       },
     },
     settings: {
       background: {
-        color: '颜色',
-        colors: '颜色集合',
+        colors: '颜色组',
         rotation: '旋转',
         radius: {
-          bottom: '底部圆角',
-          default: '圆角',
-          left: '左侧圆角',
-          right: '右侧圆角',
-          top: '顶部圆角',
+          bottom: '下边角半径',
+          default: '半径',
+          left: '左边角半径',
+          right: '右边角半径',
+          top: '上边角半径',
         },
       },
       border: {
-        colors: '颜色集合',
+        colors: '颜色组',
         rotation: '旋转',
         width: '宽度',
       },
@@ -46,7 +45,7 @@ export const zh = {
       },
       icon: {
         color: '颜色',
-        offset: '偏移',
+        offset: '偏移量',
         rotation: '旋转',
         size: '大小',
       },
@@ -54,20 +53,26 @@ export const zh = {
         blur: '模糊',
         color: '颜色',
         size: '大小',
-        x: 'X 轴',
-        y: 'Y 轴',
+        x: '水平偏移',
+        y: '垂直偏移',
       },
       text: {
-        offset: '偏移',
+        italic: '斜体',
+        offset: '偏移量',
         rotation: '旋转',
         size: '大小',
+        weight: '粗细',
         colors: {
           rotation: '颜色旋转',
-          text: '文字颜色',
+          text: '颜色组',
+        },
+        font: {
+          placeholder: '选择字体',
+          text: '字体',
         },
         value: {
           placeholder: '输入文字...',
-          text: '文本值',
+          text: '文本',
         },
       },
     },

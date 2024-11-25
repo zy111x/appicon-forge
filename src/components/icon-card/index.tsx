@@ -57,10 +57,13 @@ export const IconCard = (props: IconCardProps) => {
     shadows,
     textColorRotation,
     textColors,
+    textFont,
+    textItalic,
     textOffset,
     textRotation,
     textSize,
     textValue,
+    textWeight,
   } = styles
 
   const paddingValue = inPreview && padding ? PREVIEW_ICON_PADDING : 0
@@ -102,7 +105,10 @@ export const IconCard = (props: IconCardProps) => {
     content = (
       <span
         style={{
+          fontFamily: textFont,
           fontSize: scaleValue(textSize, valueScale),
+          fontStyle: textItalic ? 'italic' : 'normal',
+          fontWeight: textWeight,
           transform: `rotate(${textRotation}deg) translate(${scaleValue(textOffset[0], valueScale)}px, ${scaleValue(textOffset[1], valueScale)}px)`,
           ...(textColors.length > 1
             ? {

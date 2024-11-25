@@ -1,10 +1,19 @@
 'use client'
 import { useTranslation } from 'react-i18next'
 
+import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { SettingsContainer, StyleFieldSubgrid } from '@/components/ui/styled'
 
 import { ColorsField } from '../common/colors-field'
+import { FontSelect } from '../common/font-select'
 import { PointField } from '../common/point-field'
 import { SliderField } from '../common/slider-field'
 
@@ -32,6 +41,39 @@ export const TextSettings = () => {
         max={360}
         path='textColorRotation'
       />
+      <StyleFieldSubgrid label={t('settings.text.font.text')} path='textFont'>
+        <FontSelect />
+      </StyleFieldSubgrid>
+      <StyleFieldSubgrid
+        eventName='onValueChange'
+        label={t('settings.text.weight')}
+        path='textWeight'
+      >
+        <Select>
+          <SelectTrigger className='w-[180px]'>
+            <SelectValue placeholder='Theme' />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value='100'>100</SelectItem>
+            <SelectItem value='200'>200</SelectItem>
+            <SelectItem value='300'>300</SelectItem>
+            <SelectItem value='400'>400</SelectItem>
+            <SelectItem value='500'>500</SelectItem>
+            <SelectItem value='600'>600</SelectItem>
+            <SelectItem value='700'>700</SelectItem>
+            <SelectItem value='800'>800</SelectItem>
+            <SelectItem value='900'>900</SelectItem>
+          </SelectContent>
+        </Select>
+      </StyleFieldSubgrid>
+      <StyleFieldSubgrid
+        eventName='onCheckedChange'
+        label={t('settings.text.italic')}
+        path='textItalic'
+        valueName='checked'
+      >
+        <Checkbox />
+      </StyleFieldSubgrid>
     </SettingsContainer>
   )
 }

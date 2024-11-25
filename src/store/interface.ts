@@ -35,10 +35,13 @@ export interface Styles {
   // Text
   textColorRotation: number
   textColors: string[]
+  textFont: string
+  textItalic: boolean
   textOffset: Point
   textRotation: number
   textSize: number
   textValue: string
+  textWeight: string
 }
 
 export interface IconCollectionWithPrefix extends APIv2Collection {

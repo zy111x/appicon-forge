@@ -24,7 +24,6 @@ export const en = {
     },
     settings: {
       background: {
-        color: 'Color',
         colors: 'Colors',
         rotation: 'Rotation',
         radius: {
@@ -58,16 +57,22 @@ export const en = {
         y: 'Y',
       },
       text: {
+        italic: 'Italic',
         offset: 'Offset',
         rotation: 'Rotation',
         size: 'Size',
+        weight: 'Weight',
         colors: {
-          rotation: 'Color Rotation',
-          text: 'Text',
+          rotation: 'Colors Rotation',
+          text: 'Colors',
+        },
+        font: {
+          placeholder: 'Select Font',
+          text: 'Font',
         },
         value: {
           placeholder: 'Enter Text...',
-          text: 'Value',
+          text: 'Text',
         },
       },
     },

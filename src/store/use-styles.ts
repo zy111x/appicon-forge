@@ -6,6 +6,7 @@ import {
   defaultIconColor,
   defaultShadowColor,
   defaultTextColor,
+  defaultTextFont,
 } from './default-value'
 
 import type { Styles } from './interface'
@@ -27,10 +28,13 @@ export const useStyles = () => {
     shadows: [[0, 0, 0, 0, defaultShadowColor]],
     textColorRotation: 0,
     textColors: [defaultTextColor],
+    textFont: defaultTextFont,
+    textItalic: false,
     textOffset: [0, 0],
     textRotation: 0,
     textSize: 128,
     textValue: '',
+    textWeight: '400',
   })
 
   return [styles, setStyles] as const

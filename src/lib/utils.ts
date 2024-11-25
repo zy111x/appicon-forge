@@ -130,3 +130,35 @@ export const downloadImage = (
     })
   }
 }
+
+export const detectFontAvailability = (font: string) => {
+  const span = document.createElement('span')
+  span.style.position = 'absolute'
+  span.style.left = '-9999px'
+  span.style.fontSize = '72px'
+  span.innerHTML = 'abcdefghijklmnopqrstuvwxyz0123456789'
+
+  const baseFonts = ['sans-serif', 'serif']
+
+  const getDimensions = (fontFamily: string) => {
+    span.style.fontFamily = fontFamily
+    document.body.appendChild(span)
+    const dimensions = { height: span.offsetHeight, width: span.offsetWidth }
+    document.body.removeChild(span)
+    return dimensions
+  }
+
+  const baseDimensions = baseFonts.map(getDimensions)
+
+  for (const base of baseFonts) {
+    span.style.fontFamily = `${font}, ${base}`
+    const newDimensions = getDimensions(`${font}, ${base}`)
+    if (
+      newDimensions.width !== baseDimensions[baseFonts.indexOf(base)].width ||
+      newDimensions.height !== baseDimensions[baseFonts.indexOf(base)].height
+    ) {
+      return true
+    }
+  }
+  return false
+}
