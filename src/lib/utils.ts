@@ -103,14 +103,14 @@ export const colorToGradient = (
 export const getShadowCSS = (insetShadow: Shadow[], inset?: boolean) => {
   return insetShadow
     .map(
-      ([x, y, size, blur, color]) =>
-        `${x}px ${y}px ${blur}px ${size}px ${color} ${inset ? 'inset' : ''}`,
+      ([x, y, blur, spread, color]) =>
+        `${x}px ${y}px ${blur}px ${spread}px ${color} ${inset ? 'inset' : ''}`,
     )
     .join(', ')
 }
 
 export const getDropShadowCSS = (shadow: Shadow[]) => {
-  const omitSizeShadow = shadow.map(([x, y, , blur, color]) => [
+  const omitSizeShadow = shadow.map(([x, y, blur, , color]) => [
     x,
     y,
     blur,
@@ -124,7 +124,7 @@ export const getDropShadowCSS = (shadow: Shadow[]) => {
 }
 
 export const getTextShadowCSS = (shadow: Shadow[]) => {
-  const omitSizeShadow = shadow.map(([x, y, , blur, color]) => [
+  const omitSizeShadow = shadow.map(([x, y, blur, , color]) => [
     x,
     y,
     blur,

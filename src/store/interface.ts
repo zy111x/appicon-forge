@@ -6,8 +6,8 @@ export type Point = [number, number]
 export type Shadow = [
   x: number,
   y: number,
-  size: number,
   blur: number,
+  spread: number,
   color: string,
 ]
 export type BorderRadius = [number, number, number, number]

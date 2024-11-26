@@ -60,7 +60,7 @@ export const zh = {
       shadow: {
         blur: '模糊',
         color: '颜色',
-        size: '大小',
+        spread: '扩散',
         x: '水平偏移',
         y: '垂直偏移',
       },

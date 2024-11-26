@@ -102,7 +102,7 @@ function ShadowItem(props: ShadowItemProps) {
   const { showSize } = useContext(shadowListConfigContext)
   const { t } = useTranslation()
 
-  const [x, y, size, blur, color] = value
+  const [x, y, blur, spread, color] = value
 
   const cls = `col-span-full grid grid-cols-subgrid items-center`
 
@@ -117,11 +117,11 @@ function ShadowItem(props: ShadowItemProps) {
         [
           [x, 'x'],
           [y, 'y'],
-          [size, 'size'],
           [blur, 'blur'],
+          [spread, 'spread'],
         ] as const
       ).map(([itemValue, key], index) => {
-        if (!showSize && key === 'size') {
+        if (!showSize && key === 'spread') {
           return null
         }
 

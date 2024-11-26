@@ -60,7 +60,7 @@ export const en = {
       shadow: {
         blur: 'Blur',
         color: 'Color',
-        size: 'Size',
+        spread: 'Spread',
         x: 'X',
         y: 'Y',
       },
