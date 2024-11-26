@@ -10,7 +10,9 @@ import {
   cn,
   colorToGradient,
   getBorderRadiusCSS,
+  getDropShadowCSS,
   getShadowCSS,
+  getTextShadowCSS,
   scaleShadow,
   scaleValue,
 } from '@/lib/utils'
@@ -53,7 +55,7 @@ export const IconCard = (props: IconCardProps) => {
     iconColor,
     iconOffset,
     iconRotation,
-    iconShadow: [iconShadow],
+    iconShadow,
     iconSize,
     insetShadows,
     padding,
@@ -65,7 +67,7 @@ export const IconCard = (props: IconCardProps) => {
     textItalic,
     textOffset,
     textRotation,
-    textShadow: [textShadow],
+    textShadow,
     textSize,
     textValue,
     textWeight,
@@ -84,8 +86,12 @@ export const IconCard = (props: IconCardProps) => {
     insetShadows.map((v) => scaleShadow(v, valueScale)),
     true,
   )
-  const iconShadowValue = scaleShadow(iconShadow, valueScale)
-  const textShadowValue = scaleShadow(textShadow, valueScale)
+  const iconShadowCSS = getDropShadowCSS(
+    iconShadow.map((v) => scaleShadow(v, valueScale)),
+  )
+  const textShadowCSS = getTextShadowCSS(
+    textShadow.map((v) => scaleShadow(v, valueScale)),
+  )
 
   const setPreviewIconName = () => {
     if (inPreview || !iconName) return
@@ -99,7 +105,7 @@ export const IconCard = (props: IconCardProps) => {
   if (previewType === 'icon' || previewType === 'upload') {
     const styles = {
       color: iconColor,
-      filter: `drop-shadow(${iconShadowValue[0]}px ${iconShadowValue[1]}px ${iconShadowValue[3]}px ${iconShadowValue[4]})`,
+      filter: iconShadowCSS,
       height: scaleValue(iconSize, valueScale),
       transform: `rotate(${iconRotation}deg) translate(${scaleValue(iconOffset[0], valueScale)}px, ${scaleValue(iconOffset[1], valueScale)}px)`,
       width: scaleValue(iconSize, valueScale),
@@ -136,7 +142,7 @@ export const IconCard = (props: IconCardProps) => {
         <span
           style={{
             ...textStyles,
-            textShadow: `${textShadowValue[0]}px ${textShadowValue[1]}px ${textShadowValue[3]}px ${textShadowValue[4]}`,
+            textShadow: textShadowCSS,
           }}
         >
           {textValue}

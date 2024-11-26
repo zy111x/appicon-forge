@@ -109,6 +109,32 @@ export const getShadowCSS = (insetShadow: Shadow[], inset?: boolean) => {
     .join(', ')
 }
 
+export const getDropShadowCSS = (shadow: Shadow[]) => {
+  const omitSizeShadow = shadow.map(([x, y, , blur, color]) => [
+    x,
+    y,
+    blur,
+    color,
+  ])
+  return omitSizeShadow
+    .map(
+      ([x, y, blur, color]) => `drop-shadow(${x}px ${y}px ${blur}px ${color})`,
+    )
+    .join(' ')
+}
+
+export const getTextShadowCSS = (shadow: Shadow[]) => {
+  const omitSizeShadow = shadow.map(([x, y, , blur, color]) => [
+    x,
+    y,
+    blur,
+    color,
+  ])
+  return omitSizeShadow
+    .map(([x, y, blur, color]) => `${x}px ${y}px ${blur}px ${color}`)
+    .join(', ')
+}
+
 export const getBorderRadiusCSS = (
   radius: [number, number, number, number],
 ) => {

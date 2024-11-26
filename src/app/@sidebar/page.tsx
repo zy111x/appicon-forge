@@ -9,6 +9,7 @@ import { DownloadSettings } from '@/components/settings/download-settings'
 import { IconSettings } from '@/components/settings/icon-settings'
 import { ShadowSettings } from '@/components/settings/shadow-settings'
 import { TextSettings } from '@/components/settings/text-settings'
+import { ShadowConfigProvider } from '@/components/shadow-list'
 import {
   Accordion,
   AccordionContent,
@@ -66,7 +67,9 @@ export default function Sidebar() {
           <AccordionItem value={Settings.TextShadow}>
             <AccordionTrigger>{t('text shadow settings')}</AccordionTrigger>
             <AccordionContent>
-              <ShadowSettings hideSize path='textShadow' />
+              <ShadowConfigProvider showSize={false}>
+                <ShadowSettings path='textShadow' />
+              </ShadowConfigProvider>
             </AccordionContent>
           </AccordionItem>
         )}
@@ -86,7 +89,9 @@ export default function Sidebar() {
           <AccordionItem value={Settings.IconShadow}>
             <AccordionTrigger>{t('icon shadow settings')}</AccordionTrigger>
             <AccordionContent>
-              <ShadowSettings hideSize path='iconShadow' />
+              <ShadowConfigProvider showSize={false}>
+                <ShadowSettings path='iconShadow' />
+              </ShadowConfigProvider>
             </AccordionContent>
           </AccordionItem>
         )}

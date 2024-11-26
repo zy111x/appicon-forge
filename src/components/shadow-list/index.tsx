@@ -1,3 +1,5 @@
+import { createContext, useContext } from 'react'
+
 import { MinusIcon, PlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
@@ -11,6 +13,28 @@ import { Slider } from '../ui/slider'
 
 import type { Shadow } from '@/store/interface'
 
+interface ShadowListConfig {
+  limit?: number
+  showSize?: boolean
+}
+
+const shadowListConfigContext = createContext<ShadowListConfig>({
+  showSize: true,
+})
+
+interface ShadowConfigProviderProps extends ShadowListConfig {
+  children: React.ReactNode
+}
+
+export const ShadowConfigProvider = (props: ShadowConfigProviderProps) => {
+  const { children, ...rest } = props
+  return (
+    <shadowListConfigContext.Provider value={rest}>
+      {children}
+    </shadowListConfigContext.Provider>
+  )
+}
+
 interface ShadowListProps {
   hideSize?: boolean
   onChange?: (value: Shadow[]) => void
@@ -18,7 +42,11 @@ interface ShadowListProps {
 }
 
 export const ShadowList = (props: ShadowListProps) => {
-  const { hideSize, onChange, value = [] } = props
+  const { onChange, value = [] } = props
+
+  const { limit } = useContext(shadowListConfigContext)
+
+  const isLimited = limit ? value.length >= limit : false
 
   return (
     <div className='grid gap-4'>
@@ -29,13 +57,12 @@ export const ShadowList = (props: ShadowListProps) => {
           className='relative'
         >
           <ShadowItem
-            hideSize={hideSize}
             value={itemValue}
             onChange={(newValue) =>
               onChange?.(changeValueFromArray(value, newValue, index))
             }
           />
-          {index !== 0 && !hideSize && (
+          {index !== 0 && (
             <Button
               className='absolute -top-2 right-0 size-auto rounded-full p-1'
               size='icon'
@@ -47,7 +74,7 @@ export const ShadowList = (props: ShadowListProps) => {
           )}
         </div>
       ))}
-      {!hideSize && (
+      {!isLimited && (
         <Button
           className='place-self-center'
           size='icon'
@@ -65,14 +92,14 @@ export const ShadowList = (props: ShadowListProps) => {
 
 interface ShadowItemProps {
   className?: string
-  hideSize?: boolean
   onChange?: (value: Shadow) => void
   value: Shadow
 }
 
 function ShadowItem(props: ShadowItemProps) {
-  const { className, hideSize, onChange, value } = props
+  const { className, onChange, value } = props
 
+  const { showSize } = useContext(shadowListConfigContext)
   const { t } = useTranslation()
 
   const [x, y, size, blur, color] = value
@@ -94,7 +121,7 @@ function ShadowItem(props: ShadowItemProps) {
           [blur, 'blur'],
         ] as const
       ).map(([itemValue, key], index) => {
-        if (hideSize && key === 'size') {
+        if (!showSize && key === 'size') {
           return null
         }
 
