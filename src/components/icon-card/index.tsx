@@ -111,32 +111,40 @@ export const IconCard = (props: IconCardProps) => {
     }
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   } else if (previewType === 'text') {
+    const textStyles = {
+      fontFamily: textFont,
+      fontSize: scaleValue(textSize, valueScale),
+      fontStyle: textItalic ? 'italic' : 'normal',
+      fontWeight: textWeight,
+      transform: `rotate(${textRotation}deg) translate(${scaleValue(textOffset[0], valueScale)}px, ${scaleValue(textOffset[1], valueScale)}px)`,
+      ...(textColors.length > 1
+        ? {
+            backgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundImage: colorToGradient(
+              textColors,
+              textColorRotation,
+              textGradient,
+            ),
+          }
+        : {
+            color: textColors[0],
+          }),
+    }
     content = (
-      <span
-        style={{
-          fontFamily: textFont,
-          fontSize: scaleValue(textSize, valueScale),
-          fontStyle: textItalic ? 'italic' : 'normal',
-          fontWeight: textWeight,
-          textShadow: `${textShadowValue[0]}px ${textShadowValue[1]}px ${textShadowValue[3]}px ${textShadowValue[4]}`,
-          transform: `rotate(${textRotation}deg) translate(${scaleValue(textOffset[0], valueScale)}px, ${scaleValue(textOffset[1], valueScale)}px)`,
-          ...(textColors.length > 1
-            ? {
-                backgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundImage: colorToGradient(
-                  textColors,
-                  textColorRotation,
-                  textGradient,
-                ),
-              }
-            : {
-                color: textColors[0],
-              }),
-        }}
-      >
-        {textValue}
-      </span>
+      <div className='relative'>
+        <span
+          style={{
+            ...textStyles,
+            textShadow: `${textShadowValue[0]}px ${textShadowValue[1]}px ${textShadowValue[3]}px ${textShadowValue[4]}`,
+          }}
+        >
+          {textValue}
+        </span>
+        <span className='absolute inset-0 z-10' style={textStyles}>
+          {textValue}
+        </span>
+      </div>
     )
   }
 
