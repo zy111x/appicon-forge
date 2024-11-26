@@ -2,7 +2,7 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   /* config options here */
-  basePath: '/appicon-forge',
+  basePath: process.env.BASE_PATH,
   output: 'export',
 }
 

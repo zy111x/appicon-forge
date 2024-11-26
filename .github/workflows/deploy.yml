@@ -28,6 +28,8 @@ jobs:
 
       - name: Build
         run: pnpm build
+        env:
+          BASE_PATH: ${{ secrets.BASE_PATH }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
