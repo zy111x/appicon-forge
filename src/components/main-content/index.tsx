@@ -20,7 +20,7 @@ const MotionTabContent = tw(
   motion.div,
 )`mt-4 flex-1 overflow-hidden ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2`
 
-export default function Home() {
+export function MainContent() {
   const { t } = useTranslation()
   const [{ selectedTab }, setComponentsState] = useStore(
     (store) => store.componentsState,

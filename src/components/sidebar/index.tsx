@@ -21,7 +21,7 @@ import { useStore } from '@/store'
 import { Settings, Tab } from '@/store/constants'
 import { defaultStyles } from '@/store/default-value'
 
-export default function Sidebar() {
+export function Sidebar() {
   const { t } = useTranslation()
   const [componentsState, setComponentsState] = useStore(
     (store) => store.componentsState,

@@ -42,7 +42,6 @@ export const PreviewUpload = () => {
           uploadedContent && (
             <div className='flex size-full items-center justify-center'>
               {uploadedContent.startsWith('data:image') ? (
-                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   alt='Uploaded preview'
                   className='size-full object-contain'
