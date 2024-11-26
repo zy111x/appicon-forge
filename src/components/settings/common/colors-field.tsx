@@ -3,12 +3,15 @@ import { StyleFieldSubgrid } from '@/components/ui/styled'
 
 import type { StyleFieldProps } from './style-field'
 
-export type ColorsFieldProps = Omit<StyleFieldProps, 'children'>
+export interface ColorsFieldProps extends Omit<StyleFieldProps, 'children'> {
+  colorListClassName?: string
+}
 
 export const ColorsField = (props: ColorsFieldProps) => {
+  const { colorListClassName, ...rest } = props
   return (
-    <StyleFieldSubgrid {...props}>
-      <ColorList className='col-span-3' />
+    <StyleFieldSubgrid {...rest}>
+      <ColorList className={colorListClassName} />
     </StyleFieldSubgrid>
   )
 }

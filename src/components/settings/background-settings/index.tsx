@@ -16,7 +16,7 @@ export const BackgroundSettings = () => {
   const isGradient = backgroundColors.length !== 1
 
   return (
-    <SettingsContainer className='grid-cols-[auto_1fr]'>
+    <SettingsContainer>
       <ColorsField
         label={t('settings.background.colors')}
         path='backgroundColors'

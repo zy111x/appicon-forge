@@ -24,6 +24,7 @@ export const BorderSettings = () => {
       />
       <ColorsField
         className='col-span-4'
+        colorListClassName='col-span-3'
         label={t('settings.border.colors')}
         path='borderColors'
       />
