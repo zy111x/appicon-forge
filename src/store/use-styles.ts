@@ -1,47 +1,42 @@
-import { useImmer } from 'use-immer'
+import { startTransition, useEffect, useRef } from 'react'
 
-import { Gradient } from './constants'
-import {
-  defaultBackgroundColor,
-  defaultBorderColor,
-  defaultIconColor,
-  defaultShadowColor,
-  defaultTextColor,
-  defaultTextFont,
-  defaultTextShadowAndIconShadowColor,
-} from './default-value'
+import { debounce } from 'lodash-es'
+import { useImmer, type Updater } from 'use-immer'
+
+import { defaultStyles } from './default-value'
 
 import type { Styles } from './interface'
 
+const storageKey = 'appicon-forge-config'
+
 export const useStyles = () => {
-  const [styles, setStyles] = useImmer<Styles>({
-    backgroundColors: [defaultBackgroundColor],
-    backgroundGradient: Gradient.Linear,
-    backgroundRotation: 180,
-    borderColors: [defaultBorderColor],
-    borderGradient: Gradient.Linear,
-    borderRadius: [64, 64, 64, 64],
-    borderRotation: 180,
-    borderWidth: 0,
-    iconColor: defaultIconColor,
-    iconOffset: [0, 0],
-    iconRotation: 0,
-    iconShadow: [[0, 0, 0, 0, defaultTextShadowAndIconShadowColor]],
-    iconSize: 128,
-    insetShadows: [[0, 0, 0, 0, defaultShadowColor]],
-    padding: true,
-    shadows: [[0, 0, 0, 0, defaultShadowColor]],
-    textColorRotation: 0,
-    textColors: [defaultTextColor],
-    textFont: defaultTextFont,
-    textGradient: Gradient.Linear,
-    textItalic: false,
-    textOffset: [0, 0],
-    textRotation: 0,
-    textShadow: [[0, 0, 0, 0, defaultTextShadowAndIconShadowColor]],
-    textSize: 128,
-    textValue: '',
-    textWeight: '400',
-  })
-  return [styles, setStyles] as const
+  const [styles, setStyles] = useImmer(defaultStyles)
+  const isMountRef = useRef(false)
+
+  const setStorageDebounce = useRef(
+    debounce((value) => {
+      localStorage.setItem(storageKey, JSON.stringify(value))
+    }, 1000),
+  ).current
+
+  const transitionSetStyles: Updater<Styles> = (newStyles) => {
+    startTransition(() => {
+      setStyles(newStyles)
+    })
+  }
+
+  useEffect(() => {
+    if (!isMountRef.current) {
+      isMountRef.current = true
+      const storageString = localStorage.getItem(storageKey)
+      if (storageString) {
+        transitionSetStyles(JSON.parse(storageString))
+      }
+    } else {
+      setStorageDebounce(styles)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [styles])
+
+  return [styles, transitionSetStyles] as const
 }

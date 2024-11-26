@@ -1,5 +1,6 @@
 'use client'
 
+import { ListRestart } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
 import { BackgroundSettings } from '@/components/settings/background-settings'
@@ -14,14 +15,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import { Button } from '@/components/ui/button'
 import { useStore } from '@/store'
 import { Settings, Tab } from '@/store/constants'
+import { defaultStyles } from '@/store/default-value'
 
 export default function Sidebar() {
   const { t } = useTranslation()
   const [componentsState, setComponentsState] = useStore(
     (store) => store.componentsState,
   )
+  const setStyles = useStore((store) => store.styles[1])
+
   const { selectedSettings, selectedTab } = componentsState
 
   const showIconSettings =
@@ -29,9 +34,10 @@ export default function Sidebar() {
   const showTextSettings = selectedTab === Tab.Text
 
   return (
-    <aside className='h-full overflow-y-scroll rounded-2xl border p-4 shadow-sm'>
+    <aside className='relative h-full overflow-hidden rounded-2xl border shadow-sm'>
       <Accordion
         collapsible
+        className='h-full overflow-y-scroll p-4'
         type='single'
         value={selectedSettings}
         onValueChange={(value) =>
@@ -103,6 +109,16 @@ export default function Sidebar() {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
+      <Button
+        className='absolute bottom-4 right-4 rounded-full p-6 shadow-lg'
+        size='icon'
+        variant='outline'
+        onClick={() => {
+          setStyles(defaultStyles)
+        }}
+      >
+        <ListRestart className='!size-6' />
+      </Button>
     </aside>
   )
 }
