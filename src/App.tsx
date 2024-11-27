@@ -1,9 +1,17 @@
+import { lazy, Suspense } from 'react'
+
 import { DarkToggleProvider } from 'dark-toggle/react'
 
-import { MainContent } from './components/main-content'
+import { Loading } from './components/loading'
 import { Sidebar } from './components/sidebar'
 import { ClientProvider } from './providers/client'
 import { StoreProvider } from './store'
+
+const MainContent = lazy(() =>
+  import('./components/main-content').then((module) => ({
+    default: module.MainContent,
+  })),
+)
 
 export function App() {
   return (
@@ -12,7 +20,9 @@ export function App() {
         <DarkToggleProvider>
           <main className='grid h-screen w-screen grid-cols-[minmax(auto,400px)_1fr] grid-rows-1 gap-4 p-4'>
             <Sidebar />
-            <MainContent />
+            <Suspense fallback={<Loading />}>
+              <MainContent />
+            </Suspense>
           </main>
         </DarkToggleProvider>
       </StoreProvider>

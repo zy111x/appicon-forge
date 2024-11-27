@@ -131,13 +131,13 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
               backgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundImage: colorToGradient(
-                textColors,
+                textColors.map((v) => v.value),
                 textColorRotation,
                 textGradient,
               ),
             }
           : {
-              color: textColors[0],
+              color: textColors[0].value,
             }),
       }
       content = (
@@ -170,7 +170,7 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
             boxShadow: shadowCSS,
             padding: scaleValue(borderWidth, valueScale),
             backgroundImage: colorToGradient(
-              borderColors,
+              borderColors.map((v) => v.value),
               borderRotation,
               borderGradient,
             ),
@@ -193,7 +193,7 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
             style={{
               boxShadow: insetShadowCSS,
               backgroundImage: colorToGradient(
-                backgroundColors,
+                backgroundColors.map((v) => v.value),
                 backgroundRotation,
                 backgroundGradient,
               ),

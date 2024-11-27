@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
 
@@ -14,6 +15,7 @@ import { SearchGrid } from './search-grid'
 export const IconsGrid = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [componentsState] = useStore((store) => store.componentsState)
+  const [ref] = useAutoAnimate()
 
   const { t } = useTranslation()
 
@@ -30,7 +32,7 @@ export const IconsGrid = () => {
   }
 
   return (
-    <div className='flex h-full flex-col gap-4'>
+    <div ref={ref} className='flex h-full flex-col gap-4'>
       <Separator />
       {!selectedCollection && (
         <Input

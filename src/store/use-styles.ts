@@ -7,7 +7,7 @@ import { defaultStyles } from './default-value'
 
 import type { Styles } from './interface'
 
-const storageKey = 'appicon-forge-config'
+const storageKey = 'appicon-forge-config-v1'
 
 export const useStyles = () => {
   const [styles, setStyles] = useImmer(defaultStyles)
