@@ -160,6 +160,7 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
     return (
       <motion.div
         ref={ref}
+        className='shrink-0'
         layoutId={iconName}
         style={{ height: sizeValue, padding: paddingValue, width: sizeValue }}
       >

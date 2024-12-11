@@ -30,7 +30,7 @@ export const PreviewDialog = () => {
       {previewIconName && (
         <motion.div
           animate={{ opacity: 1 }}
-          className='absolute inset-0 flex flex-col items-center justify-center gap-16 overflow-hidden rounded-2xl bg-background'
+          className='absolute inset-0 flex flex-col items-center justify-center gap-4 overflow-hidden overflow-y-auto rounded-2xl bg-background lg:gap-16'
           exit={{ opacity: 0 }}
           initial={{ opacity: 0 }}
           onAnimationComplete={() => {
