@@ -4,6 +4,7 @@ export const zh = {
     'border settings': '边框设置',
     download: '下载',
     'download settings': '下载设置',
+    'go to collection': '集合',
     'icon settings': '图标设置',
     'icon shadow settings': '图标阴影设置',
     'inset shadow settings': '内阴影设置',

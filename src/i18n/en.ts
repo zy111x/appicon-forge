@@ -4,6 +4,7 @@ export const en = {
     'border settings': 'Border Settings',
     download: 'Download',
     'download settings': 'Download Settings',
+    'go to collection': 'Collection',
     'icon settings': 'Icon Settings',
     'icon shadow settings': 'Icon Shadow Settings',
     'inset shadow settings': 'Inset Shadow Settings',
