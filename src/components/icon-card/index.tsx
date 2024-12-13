@@ -20,11 +20,11 @@ import {
 } from '@/lib/utils'
 import { useStore } from '@/store'
 
-import type { BorderRadius } from '@/store/interface'
+import type { BorderRadius, PreviewIcon } from '@/store/interface'
 
 export interface IconCardProps {
   className?: string
-  iconName?: string
+  icon?: PreviewIcon
   inPreview?: boolean
   previewType?: 'icon' | 'text' | 'upload'
   uploadNode?: React.ReactNode
@@ -34,7 +34,7 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
   (props, ref) => {
     const {
       className,
-      iconName,
+      icon,
       inPreview,
       previewType = 'icon',
       uploadNode,
@@ -97,9 +97,9 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
     )
 
     const setPreviewIconName = () => {
-      if (inPreview || !iconName) return
+      if (inPreview || !icon) return
       setComponentsState((draft) => {
-        draft.previewIconName = iconName
+        draft.previewIcon = icon
       })
     }
 
@@ -113,8 +113,8 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
         transform: `rotate(${iconRotation}deg) translate(${scaleValue(iconOffset[0], valueScale)}px, ${scaleValue(iconOffset[1], valueScale)}px)`,
         width: scaleValue(iconSize, valueScale),
       }
-      if (iconName) {
-        content = <Icon icon={iconName} style={styles} />
+      if (icon) {
+        content = <Icon icon={icon.name} style={styles} />
       } else {
         content = <div style={styles}>{uploadNode}</div>
       }
@@ -161,7 +161,7 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
       <motion.div
         ref={ref}
         className='shrink-0'
-        layoutId={iconName}
+        layoutId={icon?.name}
         style={{ height: sizeValue, padding: paddingValue, width: sizeValue }}
       >
         <div

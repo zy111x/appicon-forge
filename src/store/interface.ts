@@ -57,11 +57,17 @@ export interface IconCollectionWithPrefix extends APIv2Collection {
   prefix: string
 }
 
+export interface PreviewIcon {
+  collection: IconCollectionWithPrefix
+  name: string
+}
+
 export interface ComponentsState {
   // Image Size -> only works in preview
   imageSize: number
   isSeparateBorderRadius: boolean
-  previewIconName: null | string
+  previewIcon: null | PreviewIcon
+  searchQuery: string
   selectedCollection: IconCollectionWithPrefix | null
   selectedSettings: Settings
   selectedTab: Tab
