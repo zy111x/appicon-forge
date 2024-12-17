@@ -18,7 +18,7 @@ An intuitive app icon generator that lets you customize colors, borders, gradien
 - Real-time preview of your icon changes.
 - Easy export of icons for apps.
 
->[!IMPORTANT]
+> [!IMPORTANT]
 > The text icons use the system's default fonts, and copyright compliance cannot be guaranteed. Please proceed with caution when making your selection.
 
 ## Usage
