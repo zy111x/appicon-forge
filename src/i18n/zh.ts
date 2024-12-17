@@ -11,6 +11,10 @@ export const zh = {
     'shadow settings': '阴影设置',
     'text settings': '文字设置',
     'text shadow settings': '文字阴影设置',
+    'import and export': '预设导入与导出',
+    'export data': '导出预设',
+    'import data': '导入预设',
+    'data text': '预设分享码',
     collections: {
       author: '作者',
       count: '{{count}} 个图标',
