@@ -11,6 +11,10 @@ export const en = {
     'shadow settings': 'Shadow Settings',
     'text settings': 'Text Settings',
     'text shadow settings': 'Text Shadow Settings',
+    'import and export': 'Preset Import and Export',
+    'export data': 'Export Presets',
+    'import data': 'Import Presets',
+    'data text': 'Preset sharing code',
     collections: {
       author: 'Author',
       count: '{{count}} icons',

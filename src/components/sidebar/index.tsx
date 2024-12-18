@@ -7,6 +7,7 @@ import { DownloadSettings } from '@/components/settings/download-settings'
 import { IconSettings } from '@/components/settings/icon-settings'
 import { ShadowSettings } from '@/components/settings/shadow-settings'
 import { TextSettings } from '@/components/settings/text-settings'
+import { ImportAndExportSettings } from '@/components/settings/import-and-export'
 import { ShadowConfigProvider } from '@/components/shadow-list'
 import {
   Accordion,
@@ -109,6 +110,12 @@ export function Sidebar() {
           <AccordionTrigger>{t('download settings')}</AccordionTrigger>
           <AccordionContent>
             <DownloadSettings />
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value={Settings.ImportAndExport}>
+          <AccordionTrigger>{t('import and export')}</AccordionTrigger>
+          <AccordionContent>
+            <ImportAndExportSettings />
           </AccordionContent>
         </AccordionItem>
       </Accordion>
