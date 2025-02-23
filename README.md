@@ -13,9 +13,9 @@ An intuitive app icon generator that lets you customize colors, borders, gradien
 
 ## Features
 
-- Customize icon size, position, color, background color, border, gradient, and shadow
-- Customize text content and text gradient
-- Customize local SVG files or images
+- Customize icon size, position, color, background color, border, gradient, and shadow.
+- Customize text content and text gradient.
+- Customize local SVG files or images.
 - Generate icons using [Iconify Icons](https://iconify.design/) with over 200,000 available icons.
 - Real-time preview of your icon changes.
 - Easy export of icons for apps.
