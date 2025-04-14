@@ -53,6 +53,9 @@ export interface Styles {
   textRotation: number
   textShadow: Shadow[]
   textSize: number
+  textStroke: boolean
+  textStrokeColor: string
+  textStrokeWidth: number
   textValue: string
   textWeight: string
 }

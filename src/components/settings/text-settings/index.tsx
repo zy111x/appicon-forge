@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 
-import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import {
   Select,
@@ -14,6 +13,8 @@ import { useStore } from '@/store'
 import { Gradient } from '@/store/constants'
 
 import { FontSelect } from '../../font-select'
+import { CheckField } from '../common/check-field'
+import { ColorField } from '../common/color-field'
 import { ColorsField } from '../common/colors-field'
 import { GradientSelectField } from '../common/gradient-select-field'
 import { PerspectiveField } from '../common/perspective-field'
@@ -22,7 +23,9 @@ import { SliderField } from '../common/slider-field'
 
 export const TextSettings = () => {
   const { t } = useTranslation()
-  const [{ textColors, textGradient }] = useStore((store) => store.styles)
+  const [{ textColors, textGradient, textStroke }] = useStore(
+    (store) => store.styles,
+  )
 
   const isGradient = textColors.length !== 1
 
@@ -59,6 +62,20 @@ export const TextSettings = () => {
           <GradientSelectField path='textGradient' />
         </>
       )}
+      <CheckField label={t('settings.text.stroke.text')} path='textStroke' />
+      {textStroke && (
+        <>
+          <SliderField
+            label={t('settings.text.stroke.width')}
+            max={24}
+            path='textStrokeWidth'
+          />
+          <ColorField
+            label={t('settings.text.stroke.color')}
+            path='textStrokeColor'
+          />
+        </>
+      )}
       <StyleFieldSubgrid label={t('settings.text.font.text')} path='textFont'>
         <FontSelect />
       </StyleFieldSubgrid>
@@ -84,14 +101,7 @@ export const TextSettings = () => {
           </SelectContent>
         </Select>
       </StyleFieldSubgrid>
-      <StyleFieldSubgrid
-        eventName='onCheckedChange'
-        label={t('settings.text.italic')}
-        path='textItalic'
-        valueName='checked'
-      >
-        <Checkbox />
-      </StyleFieldSubgrid>
+      <CheckField label={t('settings.text.italic')} path='textItalic' />
     </SettingsContainer>
   )
 }
