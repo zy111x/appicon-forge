@@ -2,8 +2,6 @@ import { lazy, Suspense } from 'react'
 
 import { DarkToggleProvider } from 'dark-toggle/react'
 
-import { Toaster } from '@/components/ui/sonner'
-
 import { Loading } from './components/loading'
 import { Sidebar } from './components/sidebar'
 import { ClientProvider } from './providers/client'
@@ -26,7 +24,6 @@ export function App() {
               <MainContent />
             </Suspense>
           </main>
-          <Toaster />
         </DarkToggleProvider>
       </StoreProvider>
     </ClientProvider>
