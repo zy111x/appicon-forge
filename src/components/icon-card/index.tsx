@@ -70,6 +70,9 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
       textRotation,
       textShadow,
       textSize,
+      textStroke,
+      textStrokeColor,
+      textStrokeWidth,
       textValue,
       textWeight,
     } = styles
@@ -126,6 +129,9 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
         fontStyle: textItalic ? 'italic' : 'normal',
         fontWeight: textWeight,
         transform: `rotate(${textRotation}deg) translate(${scaleValue(textOffset[0], valueScale)}px, ${scaleValue(textOffset[1], valueScale)}px)`,
+        ...(textStroke && {
+          WebkitTextStroke: `${textStrokeWidth}px ${textStrokeColor}`,
+        }),
         ...(textColors.length > 1
           ? {
               backgroundClip: 'text',
@@ -140,6 +146,7 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
               color: textColors[0].value,
             }),
       }
+
       content = (
         <div className='relative flex'>
           <span

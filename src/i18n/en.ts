@@ -90,6 +90,11 @@ export const en = {
             text: 'Add from Google Fonts',
           },
         },
+        stroke: {
+          color: 'Stroke Color',
+          text: 'Stroke',
+          width: 'Stroke Width',
+        },
         value: {
           placeholder: 'Enter Text...',
           text: 'Text',

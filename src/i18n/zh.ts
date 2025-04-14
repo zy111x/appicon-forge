@@ -90,6 +90,11 @@ export const zh = {
             text: '从 Google Fonts 添加',
           },
         },
+        stroke: {
+          color: '描边颜色',
+          text: '描边',
+          width: '描边宽度',
+        },
         value: {
           placeholder: '输入文字...',
           text: '文本',

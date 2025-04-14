@@ -38,6 +38,9 @@ export const defaultStyles: Styles = {
   textRotation: 0,
   textShadow: [createShadow(defaultTextShadowAndIconShadowColor)],
   textSize: 128,
+  textStroke: false,
+  textStrokeColor: defaultBackgroundColor,
+  textStrokeWidth: 2,
   textValue: '',
   textWeight: '400',
 }
