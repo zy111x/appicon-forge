@@ -1,15 +1,24 @@
 import { useEffect, useState } from 'react'
 
+import { CheckIcon, ChevronsUpDownIcon, Loader2Icon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'sonner'
 
+import { Button } from '@/components/ui/button'
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { detectFontAvailability } from '@/lib/utils'
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { cn, detectFontAvailability } from '@/lib/utils'
 
 export interface FontSelectProps {
   onChange?: (value: string) => void
@@ -18,6 +27,10 @@ export interface FontSelectProps {
 
 export const FontSelect = (props: FontSelectProps) => {
   const { onChange, value } = props
+
+  const [open, setOpen] = useState(false)
+  const [search, setSearch] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const [availableFonts, setAvailableFonts] = useState(() => [
     ['Arial', 'Arial'],
@@ -90,28 +103,140 @@ export const FontSelect = (props: FontSelectProps) => {
     ['Hiragino Kaku Gothic Pro', '冬青角黑 Pro'],
     ['Hiragino Mincho Pro', '冬青明朝 Pro'],
     ['Yu Mincho', '游明朝'],
+
+    // google fonts
+    ...loadTemporaryFonts(),
   ])
   const { t } = useTranslation()
 
   useEffect(() => {
-    setAvailableFonts(
-      availableFonts.filter(([font]) => detectFontAvailability(font)),
+    const fonts = availableFonts.filter(([font]) =>
+      detectFontAvailability(font),
     )
+    setAvailableFonts(fonts)
+
+    if (value) {
+      const savedValueAvailable = fonts.some(
+        ([fontValue]) => fontValue === value,
+      )
+
+      if (!savedValueAvailable) {
+        setSearch(value)
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const onClickAddFont = async () => {
+    setLoading(true)
+    setOpen(false)
+    try {
+      const fontName = await loadGoogleFont(search)
+      setAvailableFonts([...availableFonts, [fontName, fontName]])
+      toast.success(t('settings.text.font.add.success'))
+      onChange?.(fontName)
+    } catch {
+      toast.error(t('settings.text.font.add.error'))
+    } finally {
+      setLoading(false)
+      setSearch('')
+    }
+  }
+
   return (
-    <Select value={value} onValueChange={onChange}>
-      <SelectTrigger className='w-[180px]'>
-        <SelectValue placeholder={t('settings.text.font.placeholder')} />
-      </SelectTrigger>
-      <SelectContent>
-        {availableFonts.map(([font, label]) => (
-          <SelectItem key={font} value={font}>
-            {label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          aria-expanded={open}
+          className='w-[200px] justify-between'
+          disabled={loading}
+          role='combobox'
+          variant='outline'
+        >
+          {value
+            ? (availableFonts.find(([fontValue]) => fontValue === value)?.[1] ??
+              t('settings.text.font.invalid'))
+            : t('settings.text.font.placeholder')}
+          {loading ? (
+            <Loader2Icon className='ml-2 size-4 animate-spin' />
+          ) : (
+            <ChevronsUpDownIcon className='opacity-50' />
+          )}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className='w-[200px] p-0'>
+        <Command>
+          <CommandInput
+            placeholder={t('settings.text.font.search')}
+            value={search}
+            onValueChange={setSearch}
+          />
+          <CommandList>
+            <CommandEmpty className='p-1'>
+              <Button
+                className='w-full justify-start'
+                size='sm'
+                variant='ghost'
+                // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                onClick={onClickAddFont}
+              >
+                {t('settings.text.font.add.text')}
+              </Button>
+            </CommandEmpty>
+            <CommandGroup>
+              {availableFonts.map(([fontValue, fontName]) => (
+                <CommandItem
+                  key={fontValue}
+                  value={fontValue}
+                  onSelect={(currentValue) => {
+                    onChange?.(currentValue)
+                    setOpen(false)
+                  }}
+                >
+                  {fontName}
+                  <CheckIcon
+                    className={cn(
+                      'ml-auto',
+                      value === fontValue ? 'opacity-100' : 'opacity-0',
+                    )}
+                  />
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
   )
+}
+
+function loadGoogleFont(fontName: string): Promise<string> {
+  const formattedFontName = fontName.replace(/\s+/g, '+')
+  const url = `https://fonts.googleapis.com/css2?family=${formattedFontName}&display=swap`
+
+  const link = document.createElement('link')
+  link.id = `custom-font-${fontName}`
+  link.rel = 'stylesheet'
+  link.crossOrigin = 'anonymous'
+  link.href = url
+  document.head.appendChild(link)
+
+  return new Promise((resolve, reject) => {
+    link.onload = () => {
+      resolve(fontName)
+    }
+    link.onerror = (error) => {
+      reject(error)
+    }
+  })
+}
+
+function loadTemporaryFonts() {
+  const links = document.querySelectorAll(`link[id^='custom-font-']`)
+  const fontNames = Array.from(links).map((link) => {
+    const font = link.id.replace('custom-font-', '')
+    return [font, font]
+  })
+
+  return fontNames
 }

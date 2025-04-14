@@ -5,9 +5,9 @@ import { BackgroundSettings } from '@/components/settings/background-settings'
 import { BorderSettings } from '@/components/settings/border-settings'
 import { DownloadSettings } from '@/components/settings/download-settings'
 import { IconSettings } from '@/components/settings/icon-settings'
+import { ImportAndExportSettings } from '@/components/settings/import-and-export'
 import { ShadowSettings } from '@/components/settings/shadow-settings'
 import { TextSettings } from '@/components/settings/text-settings'
-import { ImportAndExportSettings } from '@/components/settings/import-and-export'
 import { ShadowConfigProvider } from '@/components/shadow-list'
 import {
   Accordion,
