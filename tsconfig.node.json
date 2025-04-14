@@ -24,10 +24,5 @@
     "skipLibCheck": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": [
-    "vite.config.ts",
-    "tailwind.config.ts",
-    "eslint.config.mjs",
-    "postcss.config.mjs"
-  ]
+  "include": ["vite.config.ts", "tailwind.config.ts"]
 }
