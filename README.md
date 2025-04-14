@@ -22,6 +22,7 @@ An intuitive app icon generator that lets you customize colors, borders, gradien
 
 > [!IMPORTANT]
 > The text icons use the system's default fonts, and copyright compliance cannot be guaranteed. Please proceed with caution when making your selection.
+> You can use custom Google fonts to avoid this.
 
 ## Usage
 
