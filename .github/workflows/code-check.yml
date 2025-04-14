@@ -19,6 +19,8 @@ jobs:
           node-version: 22
 
       - uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Install dependencies
         run: pnpm install
@@ -27,4 +29,4 @@ jobs:
         run: pnpm ts:check
 
       - name: Lint check
-        run: pnpm lint
+        run: pnpm lint:fix
