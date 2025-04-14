@@ -9,6 +9,7 @@ import {
   PREVIEW_ICON_SIZE,
 } from '@/constants/icon-size'
 import {
+  appendPerspectiveStyle,
   cn,
   colorToGradient,
   getBorderRadiusCSS,
@@ -55,6 +56,7 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
       borderWidth,
       iconColor,
       iconOffset,
+      iconPerspective,
       iconRotation,
       iconShadow,
       iconSize,
@@ -67,6 +69,7 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
       textGradient,
       textItalic,
       textOffset,
+      textPerspective,
       textRotation,
       textShadow,
       textSize,
@@ -109,13 +112,16 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
     let content: React.ReactNode = null
 
     if (previewType === 'icon' || previewType === 'upload') {
-      const styles = {
+      const styles: React.CSSProperties = {
         color: iconColor,
         filter: iconShadowCSS,
         height: scaleValue(iconSize, valueScale),
         transform: `rotate(${iconRotation}deg) translate(${scaleValue(iconOffset[0], valueScale)}px, ${scaleValue(iconOffset[1], valueScale)}px)`,
         width: scaleValue(iconSize, valueScale),
       }
+
+      appendPerspectiveStyle(styles, iconPerspective)
+
       if (icon) {
         content = <Icon icon={icon.name} style={styles} />
       } else {
@@ -123,7 +129,7 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
       }
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     } else if (previewType === 'text') {
-      const textStyles = {
+      const textStyles: React.CSSProperties = {
         fontFamily: textFont,
         fontSize: scaleValue(textSize, valueScale),
         fontStyle: textItalic ? 'italic' : 'normal',
@@ -146,6 +152,8 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
               color: textColors[0].value,
             }),
       }
+
+      appendPerspectiveStyle(textStyles, textPerspective)
 
       content = (
         <div className='relative flex'>

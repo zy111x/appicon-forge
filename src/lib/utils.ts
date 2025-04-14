@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge'
 import { Gradient } from '@/store/constants'
 
 import type { APIv2CollectionResponse } from '@/services/iconify'
-import type { Color, Shadow } from '@/store/interface'
+import type { Color, Perspective, Shadow } from '@/store/interface'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -135,6 +135,19 @@ export const getBorderRadiusCSS = (
   radius: [number, number, number, number],
 ) => {
   return `${radius[0]}px ${radius[1]}px ${radius[2]}px ${radius[3]}px`
+}
+
+export const appendPerspectiveStyle = (
+  style: React.CSSProperties,
+  perspective: Perspective,
+  perspectiveValue = 500,
+): void => {
+  const [enabled, x, y] = perspective
+  if (enabled) {
+    style.perspective = perspectiveValue
+    style.transformStyle = 'preserve-3d'
+    style.transform = `${style.transform} rotateX(${x}deg) rotateY(${y}deg)`
+  }
 }
 
 export const scaleValue = (value: number, scale: number) => value * scale

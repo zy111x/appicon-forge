@@ -59,6 +59,7 @@ export const zh = {
       icon: {
         color: '颜色',
         offset: '偏移量',
+        perspective: '透视',
         rotation: '旋转',
         size: '大小',
       },
@@ -72,6 +73,7 @@ export const zh = {
       text: {
         italic: '斜体',
         offset: '偏移量',
+        perspective: '透视',
         rotation: '旋转',
         size: '大小',
         weight: '粗细',

@@ -15,6 +15,7 @@ export type Shadow = [
   color: Color,
 ]
 export type BorderRadius = [number, number, number, number]
+export type Perspective = [boolean, number, number]
 
 export interface Styles {
   // Background
@@ -30,6 +31,8 @@ export interface Styles {
   // Icon
   iconColor: string
   iconOffset: Point
+  iconPerspective: Perspective
+  // Rotation Z
   iconRotation: number
   iconShadow: Shadow[]
   iconSize: number
@@ -46,6 +49,7 @@ export interface Styles {
   textGradient: Gradient
   textItalic: boolean
   textOffset: Point
+  textPerspective: Perspective
   textRotation: number
   textShadow: Shadow[]
   textSize: number

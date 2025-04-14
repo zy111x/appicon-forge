@@ -22,7 +22,7 @@ export const useStyles = () => {
       isMountRef.current = true
       const storageString = localStorage.getItem(storageKey)
       if (storageString) {
-        setStyles(JSON.parse(storageString))
+        setStyles((styles) => ({ ...styles, ...JSON.parse(storageString) }))
       }
     } else {
       setStorageDebounce(styles)
