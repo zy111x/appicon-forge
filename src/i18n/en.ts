@@ -59,6 +59,7 @@ export const en = {
       icon: {
         color: 'Color',
         offset: 'Offset',
+        perspective: 'Perspective',
         rotation: 'Rotation',
         size: 'Size',
       },
@@ -72,6 +73,7 @@ export const en = {
       text: {
         italic: 'Italic',
         offset: 'Offset',
+        perspective: 'Perspective',
         rotation: 'Rotation',
         size: 'Size',
         weight: 'Weight',

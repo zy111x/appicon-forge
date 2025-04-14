@@ -16,6 +16,7 @@ import { Gradient } from '@/store/constants'
 import { FontSelect } from '../../font-select'
 import { ColorsField } from '../common/colors-field'
 import { GradientSelectField } from '../common/gradient-select-field'
+import { PerspectiveField } from '../common/perspective-field'
 import { PointField } from '../common/point-field'
 import { SliderField } from '../common/slider-field'
 
@@ -39,6 +40,10 @@ export const TextSettings = () => {
         label={t('settings.text.rotation')}
         max={360}
         path='textRotation'
+      />
+      <PerspectiveField
+        label={t('settings.text.perspective')}
+        path='textPerspective'
       />
       <PointField label={t('settings.text.offset')} path='textOffset' />
       <ColorsField label={t('settings.text.colors.text')} path='textColors' />
