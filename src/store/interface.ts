@@ -5,14 +5,14 @@ export interface Color {
   id: string
   value: string
 }
-export type Point = [number, number];
+export type Point = [number, number]
 export type Shadow = [
   x: number,
   y: number,
   blur: number,
   spread: number,
   color: Color,
-];
+]
 export type BorderRadius = [number, number, number, number]
 export type Perspective = [boolean, number, number]
 

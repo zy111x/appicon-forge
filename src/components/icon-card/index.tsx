@@ -1,4 +1,3 @@
-// src/components/icon-card/index.tsx
 import { forwardRef } from 'react'
 
 import { Icon } from '@iconify/react'
