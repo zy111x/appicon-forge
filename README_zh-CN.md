@@ -57,6 +57,8 @@ pnpm dev
 
 ## 部署
 
+### 手动
+
 构建生产项目:
 
 ```sh
@@ -64,6 +66,44 @@ pnpm build
 ```
 
 将 `out` 文件夹的内容部署到您的 Web 服务器或 GitHub Pages。
+
+### Docker
+
+```console
+# 克隆仓库
+git clone https://github.com/zhangyu1818/appicon-forge.git
+
+# 进入目录
+cd appicon-forge
+
+# 构建镜像
+docker build -t appicon-forge .
+
+
+# 删除镜像
+docker rmi appicon-forge
+```
+
+#### Docker run
+
+```console
+# 启动容器
+docker run -d --name=appicon-forge --restart=always -p 5173:80 appicon-forge
+
+# 停止并删除容器与镜像
+docker stop appicon-forge
+docker rm appicon-forge
+```
+
+#### Docker compose
+
+```console
+# 构建并启动容器
+docker-compose up -d
+
+# 停止并删除容器
+docker-compose down
+```
 
 ## 许可
 
