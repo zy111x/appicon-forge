@@ -88,7 +88,7 @@ docker rmi appicon-forge
 
 ```console
 # Build and start the container
-docker run -d --name=appicon-forge --restart=always -p 10836:80 appicon-forge
+docker run -d --name=appicon-forge --restart=always -p 5173:80 appicon-forge
 
 # Stop and remove the container
 docker stop appicon-forge
