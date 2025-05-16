@@ -1,5 +1,5 @@
 # 第一阶段：构建应用
-FROM node:20 as build-stage
+FROM node:20-alpine as build-stage
 WORKDIR /app
 
 # 升级npm到最新版
