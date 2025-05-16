@@ -1,11 +1,8 @@
 import { createColor, createShadow } from '@/lib/utils'
-
 import { Gradient } from './constants'
-
 import type { Styles } from './interface'
 
 export const defaultBackgroundColor = '#F5F5F5'
-export const defaultBorderColor = '#D1D1D1'
 export const defaultTextColor = '#000'
 export const defaultShadowColor = 'rgba(0, 0, 0, 0.1)'
 export const defaultIconColor = '#333'
@@ -16,8 +13,6 @@ export const defaultStyles: Styles = {
   backgroundColors: [createColor(defaultBackgroundColor)],
   backgroundGradient: Gradient.Linear,
   backgroundRotation: 180,
-  borderColors: [createColor(defaultBorderColor)],
-  borderGradient: Gradient.Linear,
   borderRadius: [64, 64, 64, 64],
   borderRotation: 180,
   borderWidth: 0,

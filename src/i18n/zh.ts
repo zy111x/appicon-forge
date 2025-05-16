@@ -35,7 +35,6 @@ export const zh = {
         rotation: '角度',
       },
       border: {
-        colors: '颜色组',
         rotation: '旋转',
         width: '宽度',
         radius: {

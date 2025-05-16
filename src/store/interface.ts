@@ -1,19 +1,18 @@
 import type { APIv2Collection } from '@/services/iconify'
-
 import type { Gradient, Settings, Tab } from './constants'
 
 export interface Color {
   id: string
   value: string
 }
-export type Point = [number, number]
+export type Point = [number, number];
 export type Shadow = [
   x: number,
   y: number,
   blur: number,
   spread: number,
   color: Color,
-]
+];
 export type BorderRadius = [number, number, number, number]
 export type Perspective = [boolean, number, number]
 
@@ -23,8 +22,6 @@ export interface Styles {
   backgroundGradient: Gradient
   backgroundRotation: number
   // Border
-  borderColors: Color[]
-  borderGradient: Gradient
   borderRadius: BorderRadius
   borderRotation: number
   borderWidth: number
