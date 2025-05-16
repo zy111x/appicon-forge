@@ -57,6 +57,8 @@ Visit `http://localhost:5173/appicon-forge/` in your browser to start using AppI
 
 ## Deployment
 
+### Manual
+
 To build the project for production:
 
 ```sh
@@ -64,6 +66,44 @@ pnpm build
 ```
 
 Deploy the contents of the `out` folder to your web server or GitHub Pages.
+
+### Docker
+
+```console
+# Clone the repository
+git clone https://github.com/zhangyu1818/appicon-forge.git
+
+# Navigate to the directory
+cd appicon-forge
+
+# Build the image
+docker build -t appicon-forge .
+
+
+# Renive the image
+docker rmi appicon-forge
+```
+
+#### Docker run
+
+```console
+# Build and start the container
+docker run -d --name=appicon-forge --restart=always -p 10836:80 appicon-forge
+
+# Stop and remove the container
+docker stop appicon-forge
+docker rm appicon-forge
+```
+
+#### Docker compose
+
+```console
+# Build and start the container
+docker-compose up -d
+
+# Stop and remove the container
+docker-compose down
+```
 
 ## License
 
