@@ -35,6 +35,7 @@ export const en = {
         rotation: 'Angle',
       },
       border: {
+        colors: 'Colors',
         rotation: 'Rotation',
         width: 'Width',
         radius: {

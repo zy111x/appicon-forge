@@ -1,4 +1,5 @@
 import type { APIv2Collection } from '@/services/iconify'
+
 import type { Gradient, Settings, Tab } from './constants'
 
 export interface Color {
@@ -22,6 +23,8 @@ export interface Styles {
   backgroundGradient: Gradient
   backgroundRotation: number
   // Border
+  borderColors: Color[]
+  borderGradient: Gradient
   borderRadius: BorderRadius
   borderRotation: number
   borderWidth: number

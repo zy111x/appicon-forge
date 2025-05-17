@@ -49,7 +49,10 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
       backgroundColors,
       backgroundGradient,
       backgroundRotation,
+      borderColors,
+      borderGradient,
       borderRadius,
+      borderRotation,
       borderWidth,
       iconColor,
       iconOffset,
@@ -182,6 +185,11 @@ export const IconCard = forwardRef<HTMLDivElement, IconCardProps>(
           style={{
             boxShadow: shadowCSS,
             padding: scaleValue(borderWidth, valueScale),
+            backgroundImage: colorToGradient(
+              borderColors.map((v) => v.value),
+              borderRotation,
+              borderGradient,
+            ),
             borderRadius: getBorderRadiusCSS(
               borderRadius.map((v) =>
                 scaleValue(v, valueScale),
